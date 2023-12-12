@@ -6,7 +6,7 @@ class App:Application() {
 
     companion object{
 
-        lateinit var api:PixApi
+        lateinit var api:PixaApi
     }
     override fun onCreate() {
         super.onCreate()
