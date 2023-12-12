@@ -1,7 +1,9 @@
 package com.london.pixabay_api
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.london.pixabay_api.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun ActivityMainBinding.doRequest(page:Int) {
         App.api.getImages(keyWord = keyWordEd.text.toString(), page = page)
-            .enqueue(object : Callback<PinModel> {
-                override fun onResponse(call: Call<PinModel>, response: Response<PinModel>) {
+            .enqueue(object : Callback<PixModel> {
+                override fun onResponse(call: Call<PixModel>, response: Response<PixModel>) {
                     if (response.isSuccessful) {
                         response.body()?.hits.let {
                             imageAdapter = ImageAdapter(it)
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<PinModel>, t: Throwable) {
+                override fun onFailure(call: Call<PixModel>, t: Throwable) {
                     TODO("Not yet implemented")
                 }
 
